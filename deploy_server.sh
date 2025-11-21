@@ -74,10 +74,48 @@ source venv/bin/activate
 print_info "Upgrading pip..."
 pip install --upgrade pip --quiet
 
-# Install dependencies
+# Configure pip to use faster mirror (optional, for China)
+print_info "Configuring pip mirror (for faster download)..."
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple 2>/dev/null || true
+pip config set install.trusted-host pypi.tuna.tsinghua.edu.cn 2>/dev/null || true
+
+# Install dependencies with retry
 print_info "Installing project dependencies..."
-pip install -r requirements.txt
-print_info "Dependencies installed successfully."
+MAX_RETRIES=3
+RETRY_COUNT=0
+while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+    if pip install -r requirements.txt; then
+        print_info "Dependencies installed successfully."
+        break
+    else
+        RETRY_COUNT=$((RETRY_COUNT + 1))
+        if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+            print_warn "Installation failed, retrying ($RETRY_COUNT/$MAX_RETRIES)..."
+            sleep 2
+        else
+            print_error "Failed to install dependencies after $MAX_RETRIES attempts."
+            print_info "Trying with default PyPI source..."
+            pip config unset global.index-url 2>/dev/null || true
+            pip install -r requirements.txt || {
+                print_error "Failed to install dependencies. Please check your network connection."
+                exit 1
+            }
+        fi
+    fi
+done
+
+# Verify Flask installation
+print_info "Verifying Flask installation..."
+if python -c "import flask; print('Flask version:', flask.__version__)" 2>/dev/null; then
+    print_info "Flask installed successfully."
+else
+    print_error "Flask installation verification failed!"
+    print_info "Trying to install Flask manually..."
+    pip install Flask Flask-SQLAlchemy Flask-CORS python-dotenv Werkzeug gunicorn || {
+        print_error "Manual Flask installation failed!"
+        exit 1
+    }
+fi
 
 # Create necessary directories
 print_info "Creating necessary directories..."
