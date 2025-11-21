@@ -114,7 +114,58 @@ python app.py
 
 在浏览器中打开 `http://localhost:6657` 即可使用MIS系统。
 
-> **注意**: 首次运行会自动创建数据库文件。详细的环境配置说明请参考 [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md)
+> **注意**: 首次运行会自动创建数据库文件。
+
+## 服务器部署
+
+### 宝塔面板部署（推荐）
+
+详细的宝塔面板部署指南请参考：
+- [宝塔面板快速部署指南](BAOTA_QUICK_START.md) - 5分钟快速部署
+- [完整部署文档](DEPLOYMENT.md) - 详细部署步骤和故障排查
+
+### 快速部署步骤
+
+1. **克隆项目到服务器**
+   ```bash
+   cd /www/wwwroot
+   git clone https://github.com/Ar1haraNaN7mI/ECF-MIS-system-opensource.git
+   cd ECF-MIS-system-opensource
+   ```
+
+2. **创建虚拟环境并安装依赖**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install --upgrade pip
+   pip install Flask==2.0.3 Flask-SQLAlchemy==2.5.1 Flask-CORS==3.0.10 python-dotenv==0.20.0 Werkzeug==2.0.3 gunicorn==20.1.0
+   ```
+
+3. **配置环境变量**
+   ```bash
+   cp env.example .env
+   # 编辑 .env 文件，设置 HOST=0.0.0.0 以便公网访问
+   ```
+
+4. **初始化数据库**
+   ```bash
+   python init_data.py
+   ```
+
+5. **启动应用**
+   ```bash
+   python app.py
+   # 或使用 gunicorn（生产环境推荐）
+   gunicorn --bind 0.0.0.0:6657 --workers 2 app:app
+   ```
+
+6. **配置 Nginx 反向代理**（在宝塔面板中）
+   - 网站 → 您的站点 → 设置 → 反向代理
+   - 目标URL: `http://127.0.0.1:6657`
+
+7. **配置防火墙**
+   - 开放端口 80（HTTP）和 443（HTTPS）
+   - 如果直接访问应用，开放端口 6657
 
 ## 项目结构
 
@@ -192,13 +243,36 @@ eldercare-fundation/
 4. **库存管理**: 管理库存物品、供应商和采购订单
 5. **员工管理**: 管理员工信息、考勤和排班
 
+## 配置文件说明
+
+### 环境变量 (.env)
+
+主要配置项：
+- `HOST`: 服务器绑定地址（默认: `0.0.0.0`，允许公网访问）
+- `PORT`: 服务器端口（默认: `6657`）
+- `SECRET_KEY`: Flask密钥（生产环境必须更改）
+- `DATABASE_URL`: 数据库连接字符串（默认: SQLite）
+- `FLASK_DEBUG`: 调试模式（生产环境设为 `0`）
+
+### 生产环境配置
+
+- `gunicorn_config.py`: Gunicorn 生产服务器配置
+- `nginx.conf.example`: Nginx 反向代理配置示例
+- `ecf-mis.service`: Systemd 服务文件（可选）
+
 ## 注意事项
 
 - 首次运行时会自动创建SQLite数据库
 - 可以通过环境变量 `DATABASE_URL` 配置其他数据库
-- 生产环境请修改 `SECRET_KEY` 配置
+- **生产环境必须修改 `SECRET_KEY` 配置**
+- 生产环境建议使用 Gunicorn 而不是 Flask 开发服务器
+- 建议配置 Nginx 反向代理和 SSL 证书
 
 ## 开发
 
 系统采用模块化设计，易于扩展和维护。可以轻松添加新的功能模块或修改现有功能。
+
+## 许可证
+
+本项目采用 MIT 许可证，详见 [LICENSE](LICENSE) 文件。
 
