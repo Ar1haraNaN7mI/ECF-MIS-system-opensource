@@ -49,5 +49,7 @@ if __name__ == '__main__':
     port = int(os.getenv('PORT', 6657))
     host = os.getenv('HOST', '0.0.0.0')
     debug = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
-    app.run(debug=debug, host=host, port=port)
+    print(f"Starting server on {host}:{port}")
+    print(f"Access the application at http://{host}:{port}")
+    app.run(debug=debug, host=host, port=port, threaded=True)
 
