@@ -39,9 +39,9 @@ echo "[6/8] Installing dependencies..."
 echo "Using Aliyun mirror for faster download..."
 
 # Try with Aliyun mirror first
-pip install Flask==2.0.3 Flask-SQLAlchemy==3.0.0 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0 -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com || {
+pip install Flask==2.0.3 Flask-SQLAlchemy==2.5.1 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0 -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com || {
     echo "Aliyun mirror failed, trying default PyPI..."
-    pip install Flask==2.0.3 Flask-SQLAlchemy==3.0.0 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0
+    pip install Flask==2.0.3 Flask-SQLAlchemy==2.5.1 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0
 }
 
 # Verify Flask

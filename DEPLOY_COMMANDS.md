@@ -34,7 +34,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 pip config set install.trusted-host pypi.tuna.tsinghua.edu.cn
 
 # 7. 安装依赖（使用阿里云镜像源，版本兼容）
-pip install Flask==2.0.3 Flask-SQLAlchemy==3.0.0 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0 -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+pip install Flask==2.0.3 Flask-SQLAlchemy==2.5.1 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0 -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 
 # 如果上面失败，使用默认源重试：
 # pip install -r requirements.txt
@@ -112,7 +112,7 @@ pip install -r requirements.txt
 
 ### 步骤 6: 手动安装 Flask（如果仍然失败）
 ```bash
-pip install Flask==2.0.3 Flask-SQLAlchemy==3.0.0 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0
+pip install Flask==2.0.3 Flask-SQLAlchemy==2.5.1 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0
 ```
 
 ### 步骤 7: 验证 Flask 安装
@@ -170,7 +170,7 @@ python app.py
 ### 问题：Flask 安装失败
 ```bash
 # 尝试使用具体版本（兼容阿里云镜像源）
-pip install Flask==2.0.3 Flask-SQLAlchemy==3.0.0 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0
+pip install Flask==2.0.3 Flask-SQLAlchemy==2.5.1 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0
 
 # 或者不指定版本（使用最新可用版本）
 pip install Flask Flask-SQLAlchemy Flask-CORS python-dotenv Werkzeug gunicorn

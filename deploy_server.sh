@@ -111,7 +111,7 @@ if python -c "import flask; print('Flask version:', flask.__version__)" 2>/dev/n
 else
     print_error "Flask installation verification failed!"
     print_info "Trying to install Flask manually..."
-    pip install Flask Flask-SQLAlchemy Flask-CORS python-dotenv Werkzeug gunicorn || {
+            pip install Flask==2.0.3 Flask-SQLAlchemy==2.5.1 Flask-CORS==3.0.10 python-dotenv==1.0.0 Werkzeug==2.0.3 gunicorn==20.1.0 || {
         print_error "Manual Flask installation failed!"
         exit 1
     }
