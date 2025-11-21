@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIS Management System - Eldercare Foundation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MIS Management System</h1>
+            <nav>
+                <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+                <button class="nav-btn" data-section="financial">Financial</button>
+                <button class="nav-btn" data-section="donation">Donations</button>
+                <button class="nav-btn" data-section="inventory">Inventory</button>
+                <button class="nav-btn" data-section="staff">Staff</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Income</h3>
+                        <p class="stat-value" id="total-income">$0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Expense</h3>
+                        <p class="stat-value" id="total-expense">$0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Net Income</h3>
+                        <p class="stat-value" id="net-income">$0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Donations</h3>
+                        <p class="stat-value" id="total-donations">$0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Donors Count</h3>
+                        <p class="stat-value" id="donor-count">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Staff</h3>
+                        <p class="stat-value" id="active-staff">0</p>
+                    </div>
+                </div>
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3>Financial Trends</h3>
+                        <canvas id="financial-trend-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Donation Trends</h3>
+                        <canvas id="donation-trend-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Expense Breakdown</h3>
+                        <canvas id="expense-breakdown-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Donor Demographics - Age Groups</h3>
+                        <canvas id="donor-age-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Donor Demographics - Regions</h3>
+                        <canvas id="donor-region-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Top Donors</h3>
+                        <canvas id="top-donors-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Financial Management Section -->
+            <section id="financial" class="section">
+                <h2>Financial Management</h2>
+                <div class="action-bar">
+                    <button class="btn btn-primary" onclick="showAddFinancialModal()">Add Financial Record</button>
+                    <input type="date" id="financial-start-date" onchange="loadFinancialRecords()">
+                    <input type="date" id="financial-end-date" onchange="loadFinancialRecords()">
+                </div>
+                <div class="table-container">
+                    <table id="financial-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Account Code</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Donation Management Section -->
+            <section id="donation" class="section">
+                <h2>Donation Management</h2>
+                <div class="action-bar">
+                    <button class="btn btn-primary" onclick="showAddDonationModal()">Add Donation</button>
+                    <button class="btn btn-secondary" onclick="showAddDonorModal()">Add Donor</button>
+                </div>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="donations">Donations</button>
+                    <button class="tab-btn" data-tab="donors">Donors</button>
+                    <button class="tab-btn" data-tab="demographics">Demographics</button>
+                </div>
+                <div class="tab-content active" id="donations-tab">
+                    <div class="table-container">
+                        <table id="donations-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Donor</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-content" id="donors-tab">
+                    <div class="table-container">
+                        <table id="donors-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Contact Info</th>
+                                    <th>Age</th>
+                                    <th>Region</th>
+                                    <th>Registration Date</th>
+                                    <th>Total Donations</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-content" id="demographics-tab">
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Age Group Distribution</h3>
+                            <canvas id="demographics-age-chart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Region Distribution</h3>
+                            <canvas id="demographics-region-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inventory Management Section -->
+            <section id="inventory" class="section">
+                <h2>Inventory Management</h2>
+                <div class="action-bar">
+                    <button class="btn btn-primary" onclick="showAddInventoryModal()">Add Inventory Item</button>
+                    <button class="btn btn-secondary" onclick="showAddSupplierModal()">Add Supplier</button>
+                    <button class="btn btn-secondary" onclick="showAddPurchaseOrderModal()">Create Purchase Order</button>
+                </div>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="items">Items</button>
+                    <button class="tab-btn" data-tab="suppliers">Suppliers</button>
+                    <button class="tab-btn" data-tab="orders">Purchase Orders</button>
+                </div>
+                <div class="tab-content active" id="items-tab">
+                    <div class="table-container">
+                        <table id="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Quantity</th>
+                                    <th>Location</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-content" id="suppliers-tab">
+                    <div class="table-container">
+                        <table id="suppliers-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Contact Info</th>
+                                    <th>Address</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-content" id="orders-tab">
+                    <div class="table-container">
+                        <table id="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order Date</th>
+                                    <th>Supplier</th>
+                                    <th>Total Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Staff Management Section -->
+            <section id="staff" class="section">
+                <h2>Staff Management</h2>
+                <div class="action-bar">
+                    <button class="btn btn-primary" onclick="showAddStaffModal()">Add Staff</button>
+                </div>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="staff-list">Staff List</button>
+                    <button class="tab-btn" data-tab="attendance">Attendance</button>
+                    <button class="tab-btn" data-tab="schedules">Schedules</button>
+                </div>
+                <div class="tab-content active" id="staff-list-tab">
+                    <div class="table-container">
+                        <table id="staff-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Role</th>
+                                    <th>Contact Info</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-content" id="attendance-tab">
+                    <div class="table-container">
+                        <table id="attendance-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Staff</th>
+                                    <th>Check In</th>
+                                    <th>Check Out</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-content" id="schedules-tab">
+                    <div class="table-container">
+                        <table id="schedules-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Staff</th>
+                                    <th>Shift Type</th>
+                                    <th>Field</th>
+                                    <th>Hours</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
