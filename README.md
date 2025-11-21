@@ -108,11 +108,11 @@ cp env.example .env
 python app.py
 ```
 
-应用将在 `http://localhost:5000` 启动。
+应用将在 `http://localhost:6657` 启动。
 
 ### 3. 访问系统
 
-在浏览器中打开 `http://localhost:5000` 即可使用MIS系统。
+在浏览器中打开 `http://localhost:6657` 即可使用MIS系统。
 
 > **注意**: 首次运行会自动创建数据库文件。详细的环境配置说明请参考 [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md)
 

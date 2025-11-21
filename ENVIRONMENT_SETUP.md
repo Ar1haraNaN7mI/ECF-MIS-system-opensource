@@ -78,7 +78,7 @@ SECRET_KEY=dev-secret-key-change-in-production-2024
 
 # Server Configuration
 HOST=0.0.0.0
-PORT=5000
+PORT=6657
 ```
 
 ### 4. 启动应用
@@ -87,7 +87,7 @@ PORT=5000
 python app.py
 ```
 
-应用将在 `http://localhost:5000` 启动。
+应用将在 `http://localhost:6657` 启动。
 
 ## 环境变量说明
 
@@ -98,7 +98,7 @@ python app.py
 | `FLASK_ENV` | Flask环境（development/production） | `development` |
 | `FLASK_DEBUG` | 是否启用调试模式 | `1` |
 | `HOST` | 服务器主机 | `0.0.0.0` |
-| `PORT` | 服务器端口 | `5000` |
+| `PORT` | 服务器端口 | `6657` |
 
 ## 数据库配置
 

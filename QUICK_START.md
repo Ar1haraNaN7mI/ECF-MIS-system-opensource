@@ -36,7 +36,7 @@ run.bat
 
 应用启动后，在浏览器中打开：
 ```
-http://localhost:5000
+http://localhost:6657
 ```
 
 ## 环境配置说明
@@ -57,9 +57,9 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ### 问题：端口被占用
 
-如果 5000 端口被占用，可以：
-1. 修改 `.env` 文件中的 `PORT=5000` 为其他端口
-2. 或修改 `app.py` 最后一行的端口号
+如果 6657 端口被占用，可以：
+1. 修改 `.env` 文件中的 `PORT=6657` 为其他端口
+2. 或修改 `app.py` 中的端口配置
 
 ### 问题：模块导入错误
 
@@ -73,7 +73,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ## 下一步
 
 1. 启动应用
-2. 访问 http://localhost:5000
+2. 访问 http://localhost:6657
 3. 开始使用 MIS 系统！
 
 
