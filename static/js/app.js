@@ -729,6 +729,133 @@ async function updateInventoryItem(event, itemId) {
     }
 }
 
+async function editFinancialRecord(recordId) {
+    try {
+        const data = await fetchAPI(`${API_BASE}/financial/records/${recordId}`);
+
+        const content = `
+            <h2>Edit Financial Record</h2>
+            <form onsubmit="updateFinancialRecord(event, ${recordId})">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" name="date" value="${data.date || ''}" required>
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <select name="type" required>
+                        <option value="Income" ${data.type === 'Income' ? 'selected' : ''}>Income</option>
+                        <option value="Expense" ${data.type === 'Expense' ? 'selected' : ''}>Expense</option>
+                        <option value="Donation" ${data.type === 'Donation' ? 'selected' : ''}>Donation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" step="0.01" name="amount" value="${data.amount || 0}" required>
+                </div>
+                <div class="form-group">
+                    <label>Account Code</label>
+                    <input type="text" name="account_code" value="${data.account_code || ''}">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description">${data.description || ''}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        `;
+        showModal(content);
+    } catch (error) {
+        console.error('Error loading financial record:', error);
+        alert('Failed to load financial record: ' + error.message);
+    }
+}
+
+async function updateFinancialRecord(event, recordId) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    data.amount = parseFloat(data.amount);
+
+    try {
+        await fetchAPI(`${API_BASE}/financial/records/${recordId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        closeModal();
+        loadFinancialRecords();
+        alert('Financial record updated successfully!');
+    } catch (error) {
+        console.error('Error updating financial record:', error);
+        alert('Failed to update: ' + error.message);
+    }
+}
+
+async function editDonation(donationId) {
+    try {
+        const data = await fetchAPI(`${API_BASE}/donation/donations/${donationId}`);
+
+        const content = `
+            <h2>Edit Donation</h2>
+            <form onsubmit="updateDonation(event, ${donationId})">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" name="date" value="${data.date || ''}" required>
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <select name="type" required>
+                        <option value="Monetary" ${data.type === 'Monetary' ? 'selected' : ''}>Monetary</option>
+                        <option value="Gift" ${data.type === 'Gift' ? 'selected' : ''}>Gift</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" step="0.01" name="amount" value="${data.amount || 0}" required>
+                </div>
+                <div class="form-group">
+                    <label>Donor ID</label>
+                    <input type="number" name="donor_id" value="${data.donor_id || ''}" required>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select name="status">
+                        <option value="Pending" ${data.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                        <option value="Completed" ${data.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        `;
+        showModal(content);
+    } catch (error) {
+        console.error('Error loading donation:', error);
+        alert('Failed to load donation: ' + error.message);
+    }
+}
+
+async function updateDonation(event, donationId) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    data.donor_id = parseInt(data.donor_id);
+    data.amount = parseFloat(data.amount);
+
+    try {
+        await fetchAPI(`${API_BASE}/donation/donations/${donationId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        closeModal();
+        loadDonations();
+        alert('Donation updated successfully!');
+    } catch (error) {
+        console.error('Error updating donation:', error);
+        alert('Failed to update: ' + error.message);
+    }
+}
+
 function showAddSupplierModal() {
     const content = `
         <h2>Add Supplier</h2>

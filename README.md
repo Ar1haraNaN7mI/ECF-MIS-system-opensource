@@ -44,7 +44,32 @@
 
 ## 安装和运行
 
-### 方式一：使用自动化脚本（推荐）
+### 方式一：一键启动脚本（最简单，推荐）
+
+**Windows 用户：**
+```bash
+# 双击运行 quick_start.bat 或在命令行执行：
+quick_start.bat
+```
+
+**Linux/Mac 用户：**
+```bash
+# 添加执行权限并运行
+chmod +x quick_start.sh
+./quick_start.sh
+```
+
+一键启动脚本会自动完成以下操作：
+- ✅ 检查Python环境
+- ✅ 创建虚拟环境（如果不存在）
+- ✅ 安装/更新所有依赖包
+- ✅ 创建配置文件（从env.example）
+- ✅ 初始化数据库
+- ✅ 启动应用服务器
+
+启动后访问：`http://localhost:6657`
+
+### 方式二：分步安装（适合需要自定义配置）
 
 **Windows 用户：**
 ```bash
@@ -174,13 +199,20 @@ eldercare-fundation/
 ├── app.py                 # Flask应用主文件
 ├── models.py              # 数据库模型定义
 ├── requirements.txt       # Python依赖包
+├── quick_start.bat        # Windows一键启动脚本
+├── quick_start.sh         # Linux/Mac一键启动脚本
+├── setup_env.bat          # Windows环境配置脚本
+├── setup_env.sh           # Linux/Mac环境配置脚本
+├── run.bat                # Windows运行脚本
+├── env.example            # 环境变量配置示例
 ├── routes/               # API路由
 │   ├── __init__.py
 │   ├── financial.py      # 财务管理路由
 │   ├── donation.py       # 捐赠管理路由
 │   ├── inventory.py      # 库存管理路由
 │   ├── staff.py          # 员工管理路由
-│   └── dashboard.py      # 仪表板路由
+│   ├── dashboard.py      # 仪表板路由
+│   └── utils.py          # 工具函数
 ├── templates/            # HTML模板
 │   └── index.html
 └── static/               # 静态文件
