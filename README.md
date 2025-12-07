@@ -1,99 +1,99 @@
-# MIS管理系统 - 老年护理基金会
+# MIS Management System - Elder Care Foundation
 
-这是一个完整的管理信息系统(MIS)，用于管理老年护理基金会的财务、捐赠、库存和员工数据。
+A comprehensive Management Information System (MIS) for managing financial, donation, inventory, and staff data for an elder care foundation.
 
-## 功能特性
+## Features
 
-### 财务管理
-- 财务记录管理（收入、支出、捐赠）
-- 财务趋势分析
-- 支出分类统计
-- 财务报表生成
+### Financial Management
+- Financial record management (income, expenses, donations)
+- Financial trend analysis
+- Expense categorization and statistics
+- Financial report generation
 
-### 捐赠管理
-- 捐赠记录管理
-- 捐赠者信息管理
-- 捐赠者人口统计分析（年龄组、地区分布）
-- 顶级捐赠者排名
+### Donation Management
+- Donation record management
+- Donor information management
+- Donor demographics analysis (age groups, regional distribution)
+- Top donors ranking
 
-### 库存管理
-- 库存物品管理
-- 需求计划管理
-- 供应商管理
-- 采购订单管理
+### Inventory Management
+- Inventory item management
+- Demand planning management
+- Supplier management
+- Purchase order management
 
-### 员工管理
-- 员工信息管理
-- 考勤记录
-- 排班管理
-- 绩效评估
+### Staff Management
+- Staff information management
+- Attendance records
+- Schedule management
+- Performance evaluation
 
-### 数据可视化
-- 财务趋势图表
-- 捐赠趋势图表
-- 支出分类饼图
-- 捐赠者人口统计图表
-- 顶级捐赠者柱状图
+### Data Visualization
+- Financial trend charts
+- Donation trend charts
+- Expense category pie charts
+- Donor demographics charts
+- Top donors bar charts
 
-## 技术栈
+## Technology Stack
 
-- **后端**: Flask (Python)
-- **数据库**: SQLite (可配置为其他数据库)
-- **前端**: HTML5, CSS3, JavaScript
-- **图表库**: Chart.js
+- **Backend**: Flask (Python)
+- **Database**: SQLite (configurable to other databases)
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Chart Library**: Chart.js
 
-## 安装和运行
+## Installation and Running
 
-### 方式一：一键启动脚本（最简单，推荐）
+### Method 1: One-Click Startup Script (Simplest, Recommended)
 
-**Windows 用户：**
+**Windows Users:**
 ```bash
-# 双击运行 quick_start.bat 或在命令行执行：
+# Double-click quick_start.bat or run in command line:
 quick_start.bat
 ```
 
-**Linux/Mac 用户：**
+**Linux/Mac Users:**
 ```bash
-# 添加执行权限并运行
+# Add execute permission and run
 chmod +x quick_start.sh
 ./quick_start.sh
 ```
 
-一键启动脚本会自动完成以下操作：
-- ✅ 检查Python环境
-- ✅ 创建虚拟环境（如果不存在）
-- ✅ 安装/更新所有依赖包
-- ✅ 创建配置文件（从env.example）
-- ✅ 初始化数据库
-- ✅ 启动应用服务器
+The one-click startup script automatically performs the following operations:
+- ✅ Check Python environment
+- ✅ Create virtual environment (if not exists)
+- ✅ Install/update all dependencies
+- ✅ Create configuration file (from env.example)
+- ✅ Initialize database
+- ✅ Start application server
 
-启动后访问：`http://localhost:6657`
+After startup, access at: `http://localhost:6657`
 
-### 方式二：分步安装（适合需要自定义配置）
+### Method 2: Step-by-Step Installation (For custom configuration)
 
-**Windows 用户：**
+**Windows Users:**
 ```bash
-# 首次使用，配置环境
+# First time setup, configure environment
 setup_env.bat
 
-# 启动应用
+# Start application
 run.bat
 ```
 
-**Linux/Mac 用户：**
+**Linux/Mac Users:**
 ```bash
-# 首次使用，配置环境
+# First time setup, configure environment
 chmod +x setup_env.sh
 ./setup_env.sh
 
-# 启动应用
+# Start application
 source venv/bin/activate
 python app.py
 ```
 
-### 方式二：手动配置
+### Method 3: Manual Configuration
 
-#### 1. 创建虚拟环境
+#### 1. Create Virtual Environment
 
 **Windows:**
 ```bash
@@ -107,16 +107,16 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-#### 2. 安装依赖
+#### 2. Install Dependencies
 
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-#### 3. 配置环境变量
+#### 3. Configure Environment Variables
 
-复制 `env.example` 为 `.env` 文件：
+Copy `env.example` to `.env` file:
 ```bash
 # Windows
 copy env.example .env
@@ -125,40 +125,40 @@ copy env.example .env
 cp env.example .env
 ```
 
-然后根据需要修改 `.env` 文件中的配置。
+Then modify the configuration in `.env` file as needed.
 
-#### 4. 运行应用
+#### 4. Run Application
 
 ```bash
 python app.py
 ```
 
-应用将在 `http://localhost:6657` 启动。
+The application will start at `http://localhost:6657`.
 
-### 3. 访问系统
+### Access the System
 
-在浏览器中打开 `http://localhost:6657` 即可使用MIS系统。
+Open `http://localhost:6657` in your browser to use the MIS system.
 
-> **注意**: 首次运行会自动创建数据库文件。
+> **Note**: The database file will be automatically created on first run.
 
-## 服务器部署
+## Server Deployment
 
-### 宝塔面板部署（推荐）
+### Baota Panel Deployment (Recommended)
 
-详细的宝塔面板部署指南请参考：
-- [宝塔面板快速部署指南](BAOTA_QUICK_START.md) - 5分钟快速部署
-- [完整部署文档](DEPLOYMENT.md) - 详细部署步骤和故障排查
+For detailed Baota panel deployment guide, please refer to:
+- [Baota Panel Quick Start Guide](BAOTA_QUICK_START.md) - 5-minute quick deployment
+- [Complete Deployment Documentation](DEPLOYMENT.md) - Detailed deployment steps and troubleshooting
 
-### 快速部署步骤
+### Quick Deployment Steps
 
-1. **克隆项目到服务器**
+1. **Clone project to server**
    ```bash
    cd /www/wwwroot
    git clone https://github.com/Ar1haraNaN7mI/ECF-MIS-system-opensource.git
    cd ECF-MIS-system-opensource
    ```
 
-2. **创建虚拟环境并安装依赖**
+2. **Create virtual environment and install dependencies**
    ```bash
    python3 -m venv venv
    source venv/bin/activate
@@ -166,145 +166,144 @@ python app.py
    pip install Flask==2.0.3 Flask-SQLAlchemy==2.5.1 Flask-CORS==3.0.10 python-dotenv==0.20.0 Werkzeug==2.0.3 gunicorn==20.1.0
    ```
 
-3. **配置环境变量**
+3. **Configure environment variables**
    ```bash
    cp env.example .env
-   # 编辑 .env 文件，设置 HOST=0.0.0.0 以便公网访问
+   # Edit .env file, set HOST=0.0.0.0 for public access
    ```
 
-4. **初始化数据库**
+4. **Initialize database**
    ```bash
    python init_data.py
    ```
 
-5. **启动应用**
+5. **Start application**
    ```bash
    python app.py
-   # 或使用 gunicorn（生产环境推荐）
+   # Or use gunicorn (recommended for production)
    gunicorn --bind 0.0.0.0:6657 --workers 2 app:app
    ```
 
-6. **配置 Nginx 反向代理**（在宝塔面板中）
-   - 网站 → 您的站点 → 设置 → 反向代理
-   - 目标URL: `http://127.0.0.1:6657`
+6. **Configure Nginx reverse proxy** (in Baota panel)
+   - Website → Your Site → Settings → Reverse Proxy
+   - Target URL: `http://127.0.0.1:6657`
 
-7. **配置防火墙**
-   - 开放端口 80（HTTP）和 443（HTTPS）
-   - 如果直接访问应用，开放端口 6657
+7. **Configure firewall**
+   - Open ports 80 (HTTP) and 443 (HTTPS)
+   - If accessing application directly, open port 6657
 
-## 项目结构
+## Project Structure
 
 ```
 eldercare-fundation/
-├── app.py                 # Flask应用主文件
-├── models.py              # 数据库模型定义
-├── requirements.txt       # Python依赖包
-├── quick_start.bat        # Windows一键启动脚本
-├── quick_start.sh         # Linux/Mac一键启动脚本
-├── setup_env.bat          # Windows环境配置脚本
-├── setup_env.sh           # Linux/Mac环境配置脚本
-├── run.bat                # Windows运行脚本
-├── env.example            # 环境变量配置示例
-├── routes/               # API路由
+├── app.py                 # Flask application main file
+├── models.py              # Database model definitions
+├── requirements.txt       # Python dependencies
+├── quick_start.bat        # Windows one-click startup script
+├── quick_start.sh         # Linux/Mac one-click startup script
+├── setup_env.bat          # Windows environment setup script
+├── setup_env.sh           # Linux/Mac environment setup script
+├── run.bat                # Windows run script
+├── env.example            # Environment variable configuration example
+├── routes/               # API routes
 │   ├── __init__.py
-│   ├── financial.py      # 财务管理路由
-│   ├── donation.py       # 捐赠管理路由
-│   ├── inventory.py      # 库存管理路由
-│   ├── staff.py          # 员工管理路由
-│   ├── dashboard.py      # 仪表板路由
-│   └── utils.py          # 工具函数
-├── templates/            # HTML模板
+│   ├── financial.py      # Financial management routes
+│   ├── donation.py       # Donation management routes
+│   ├── inventory.py      # Inventory management routes
+│   ├── staff.py          # Staff management routes
+│   ├── dashboard.py      # Dashboard routes
+│   └── utils.py          # Utility functions
+├── templates/            # HTML templates
 │   └── index.html
-└── static/               # 静态文件
+└── static/               # Static files
     ├── css/
     │   └── style.css
     └── js/
         └── app.js
 ```
 
-## API端点
+## API Endpoints
 
-### 财务管理
-- `GET /api/financial/records` - 获取财务记录
-- `POST /api/financial/records` - 创建财务记录
-- `GET /api/financial/summary` - 获取财务摘要
-- `GET /api/financial/expenses` - 获取支出记录
+### Financial Management
+- `GET /api/financial/records` - Get financial records
+- `POST /api/financial/records` - Create financial record
+- `GET /api/financial/summary` - Get financial summary
+- `GET /api/financial/expenses` - Get expense records
 
-### 捐赠管理
-- `GET /api/donation/donations` - 获取捐赠记录
-- `POST /api/donation/donations` - 创建捐赠
-- `GET /api/donation/donors` - 获取捐赠者列表
-- `POST /api/donation/donors` - 创建捐赠者
-- `GET /api/donation/demographics` - 获取捐赠者人口统计
+### Donation Management
+- `GET /api/donation/donations` - Get donation records
+- `POST /api/donation/donations` - Create donation
+- `GET /api/donation/donors` - Get donor list
+- `POST /api/donation/donors` - Create donor
+- `GET /api/donation/demographics` - Get donor demographics
 
-### 库存管理
-- `GET /api/inventory/items` - 获取库存项
-- `POST /api/inventory/items` - 创建库存项
-- `GET /api/inventory/suppliers` - 获取供应商
-- `GET /api/inventory/purchase-orders` - 获取采购订单
+### Inventory Management
+- `GET /api/inventory/items` - Get inventory items
+- `POST /api/inventory/items` - Create inventory item
+- `GET /api/inventory/suppliers` - Get suppliers
+- `GET /api/inventory/purchase-orders` - Get purchase orders
 
-### 员工管理
-- `GET /api/staff/staff` - 获取员工列表
-- `POST /api/staff/staff` - 创建员工
-- `GET /api/staff/attendance` - 获取考勤记录
-- `GET /api/staff/schedules` - 获取排班表
+### Staff Management
+- `GET /api/staff/staff` - Get staff list
+- `POST /api/staff/staff` - Create staff member
+- `GET /api/staff/attendance` - Get attendance records
+- `GET /api/staff/schedules` - Get schedules
 
-### 仪表板
-- `GET /api/dashboard/overview` - 获取仪表板概览
-- `GET /api/dashboard/financial-trends` - 获取财务趋势
-- `GET /api/dashboard/donation-trends` - 获取捐赠趋势
-- `GET /api/dashboard/top-donors` - 获取顶级捐赠者
+### Dashboard
+- `GET /api/dashboard/overview` - Get dashboard overview
+- `GET /api/dashboard/financial-trends` - Get financial trends
+- `GET /api/dashboard/donation-trends` - Get donation trends
+- `GET /api/dashboard/top-donors` - Get top donors
 
-## 数据库模型
+## Database Models
 
-系统包含以下主要数据表：
+The system includes the following main data tables:
 
-- **财务管理**: FinancialRecord, Expense, PayrollRecord
-- **捐赠管理**: Donation, Donor, Gift
-- **库存管理**: Inventory, DemandPlan, Supplier, PurchaseOrder
-- **员工管理**: Staff, Attendance, Schedule, PerformanceReview
-- **用户管理**: User, Role, Permission
+- **Financial Management**: FinancialRecord, Expense, PayrollRecord
+- **Donation Management**: Donation, Donor, Gift
+- **Inventory Management**: Inventory, DemandPlan, Supplier, PurchaseOrder
+- **Staff Management**: Staff, Attendance, Schedule, PerformanceReview
+- **User Management**: User, Role, Permission
 
-所有表之间的关系已在ERD图中定义，并通过外键关联。
+All relationships between tables are defined in the ERD diagram and linked through foreign keys.
 
-## 使用说明
+## Usage Instructions
 
-1. **仪表板**: 查看系统概览和关键统计数据
-2. **财务管理**: 管理所有财务记录和支出
-3. **捐赠管理**: 管理捐赠记录和捐赠者信息，查看人口统计
-4. **库存管理**: 管理库存物品、供应商和采购订单
-5. **员工管理**: 管理员工信息、考勤和排班
+1. **Dashboard**: View system overview and key statistics
+2. **Financial Management**: Manage all financial records and expenses
+3. **Donation Management**: Manage donation records and donor information, view demographics
+4. **Inventory Management**: Manage inventory items, suppliers, and purchase orders
+5. **Staff Management**: Manage staff information, attendance, and schedules
 
-## 配置文件说明
+## Configuration File Description
 
-### 环境变量 (.env)
+### Environment Variables (.env)
 
-主要配置项：
-- `HOST`: 服务器绑定地址（默认: `0.0.0.0`，允许公网访问）
-- `PORT`: 服务器端口（默认: `6657`）
-- `SECRET_KEY`: Flask密钥（生产环境必须更改）
-- `DATABASE_URL`: 数据库连接字符串（默认: SQLite）
-- `FLASK_DEBUG`: 调试模式（生产环境设为 `0`）
+Main configuration items:
+- `HOST`: Server binding address (default: `0.0.0.0`, allows public access)
+- `PORT`: Server port (default: `6657`)
+- `SECRET_KEY`: Flask secret key (must be changed in production)
+- `DATABASE_URL`: Database connection string (default: SQLite)
+- `FLASK_DEBUG`: Debug mode (set to `0` in production)
 
-### 生产环境配置
+### Production Environment Configuration
 
-- `gunicorn_config.py`: Gunicorn 生产服务器配置
-- `nginx.conf.example`: Nginx 反向代理配置示例
-- `ecf-mis.service`: Systemd 服务文件（可选）
+- `gunicorn_config.py`: Gunicorn production server configuration
+- `nginx.conf.example`: Nginx reverse proxy configuration example
+- `ecf-mis.service`: Systemd service file (optional)
 
-## 注意事项
+## Notes
 
-- 首次运行时会自动创建SQLite数据库
-- 可以通过环境变量 `DATABASE_URL` 配置其他数据库
-- **生产环境必须修改 `SECRET_KEY` 配置**
-- 生产环境建议使用 Gunicorn 而不是 Flask 开发服务器
-- 建议配置 Nginx 反向代理和 SSL 证书
+- SQLite database will be automatically created on first run
+- Other databases can be configured via `DATABASE_URL` environment variable
+- **`SECRET_KEY` must be changed in production environment**
+- Production environment should use Gunicorn instead of Flask development server
+- It is recommended to configure Nginx reverse proxy and SSL certificate
 
-## 开发
+## Development
 
-系统采用模块化设计，易于扩展和维护。可以轻松添加新的功能模块或修改现有功能。
+The system uses a modular design, making it easy to extend and maintain. New functional modules can be easily added or existing features modified.
 
-## 许可证
+## License
 
-本项目采用 MIT 许可证，详见 [LICENSE](LICENSE) 文件。
-
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
